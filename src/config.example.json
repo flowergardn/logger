@@ -1,0 +1,16 @@
+{
+  "discord": {
+    "enabled": false,
+    "errorWebhook": "WEBHOOK URL FOR ERRORS",
+    "errorContent": "CONTENT TO SEND",
+    "successWebhook": "WEBHOOK URL FOR SUCCESS",
+    "successContent": "CONTENT TO SEND"
+  },
+  "twilio": {
+    "enabled": false,
+    "accountSID": "YOUR TWILIO ACCOUNT SID",
+    "sendTo": "YOUR PHONE NUMBER",
+    "sendFrom": "TWILIO PHONE NUMBER",
+    "authToken": "YOUR TWILIO AUTH TOKEN"
+  }
+}

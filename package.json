@@ -6,13 +6,20 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": ["logger", "logging", "sms", "discordwebhook", "webhook"],
+  "keywords": [
+    "logger",
+    "logging",
+    "sms",
+    "discord-webhook"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.25.0",
+    "caller": "^1.0.1",
     "chalk": "^4.1.2",
     "dayjs": "^1.10.7",
+    "pretty-bytes": "^5.6.0",
     "twilio": "^3.73.1"
   }
 }
