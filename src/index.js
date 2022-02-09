@@ -178,6 +178,8 @@ module.exports.Logger = class Logger {
      * @param {Object} opt The options of this log
      * @param {String} [opt.title = "file name"]  The title of this log
      * @param {String|Array} opt.messages  The messages to send
+     * @param {boolean} [opt.disableTwilio = false]  Disable twilio for this log? (Default: false)
+     * @param {boolean} [opt.disableDiscord = false]  Disable Discord for this log? (Default: false)
      */
 
      async _sendLog(type, opt) {
@@ -205,7 +207,7 @@ module.exports.Logger = class Logger {
         }
         this._genericLogger(logType, title, ...opt.messages);
 
-        if (discord.enabled) {
+        if (discord.enabled && !opt.disableDiscord) {
             // do Discord stuff
             if (!discord[`${type}Webhook`]) {
                 this._genericLogger(1, `AstridLogger - Discord`, `No ${type} webhook specified!`);
@@ -233,7 +235,7 @@ module.exports.Logger = class Logger {
             }
         }
 
-        if(twilio.enabled) {
+        if(twilio.enabled && !opt.disableTwilio) {
             const twilio = this.twilioClient;
             let twilioConfig = this.config.twilio;
             const {sendTo, sendFrom} = twilioConfig;
@@ -279,6 +281,8 @@ module.exports.Logger = class Logger {
      * @param {Object} opt The options of this log
      * @param {String} [opt.title = "file name"]  The title of this log
      * @param {String|Array} opt.messages  The messages to send
+     * @param {boolean} [opt.disableTwilio = false]  Disable twilio for this log? (Default: false)
+     * @param {boolean} [opt.disableDiscord = false]  Disable Discord for this log? (Default: false)
      */
 
     async error(opt = {title: null, messages: ["No message provided"]}) {
@@ -293,11 +297,13 @@ module.exports.Logger = class Logger {
      * @export
      * @return {LoggerResponse} A success response
      * @param {Object} opt The options of this log
-     * @param {String} [opt.title = "file name"]  The title of this log
-     * @param {String|Array} opt.messages  The messages to send
+     * @param {string} [opt.title = "file name"]  The title of this log
+     * @param {string|Array} opt.messages  The messages to send
+     * @param {boolean} [opt.disableTwilio = false]  Disable twilio for this log? (Default: false)
+     * @param {boolean} [opt.disableDiscord = false]  Disable Discord for this log? (Default: false)
      */
 
-    async success(opt = {title: null, messages: ["No message provided"]}) {
+    async success(opt = {title: "a", messages: ["No message provided"], disableTwilio: false, disableDiscord: false}) {
         try {
             await this._sendLog("success", opt)
         } catch(err) {
