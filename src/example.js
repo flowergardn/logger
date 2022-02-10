@@ -7,5 +7,5 @@ const AstridLogger = new AstridLog(configInfo);
 AstridLogger.success({messages: ["Successfully fetched data"]})
 // Send an error message
 AstridLogger.error({messages: ["Could not fetch api, status code: 500"]})
-// Send a named success message
-AstridLogger.success({messages: ["This is a named message"], title: "Hello world"})
+// Send a named debug message
+AstridLogger.debug({messages: ["This is a named message"], title: "Hello world"})

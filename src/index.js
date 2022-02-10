@@ -310,5 +310,23 @@ module.exports.Logger = class Logger {
             console.log(`AstridLogger: Error sending success log lmao`, err);
         }
     }
+
+    /**
+     * @export
+     * @return {LoggerResponse} A success response
+     * @param {Object} opt The options of this log
+     * @param {string} [opt.title = "file name"]  The title of this log
+     * @param {string|Array} opt.messages  The messages to send
+     * @param {boolean} [opt.disableTwilio = false]  Disable twilio for this log? (Default: false)
+     * @param {boolean} [opt.disableDiscord = false]  Disable Discord for this log? (Default: false)
+     */
+
+    async debug(opt = {title: "a", messages: ["No message provided"], disableTwilio: false, disableDiscord: false}) {
+        try {
+            await this._sendLog("debug", opt)
+        } catch(err) {
+            console.log(`AstridLogger: Error sending debug log lmao`, err);
+        }
+    }
 };
 
